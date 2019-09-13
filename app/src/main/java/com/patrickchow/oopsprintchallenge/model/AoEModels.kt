@@ -9,7 +9,7 @@ Civilization -
     unique_unit: String
     unique_tech: String
  */
-data class Civilizations(
+data class Civilization(
     val army_type: String,
     val unique_unit: String,
     val unique_tech: String
