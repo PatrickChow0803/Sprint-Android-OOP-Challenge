@@ -1,6 +1,8 @@
 package com.patrickchow.oopsprintchallenge.view
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,8 @@ import android.widget.TextView
 import com.patrickchow.oopsprintchallenge.R
 
 import com.patrickchow.oopsprintchallenge.dummy.DummyContent
+import com.patrickchow.oopsprintchallenge.model.AoEAPI
+import com.patrickchow.oopsprintchallenge.model.AoEApiObject
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
@@ -32,9 +36,16 @@ class ItemListActivity : AppCompatActivity() {
      */
     private var twoPane: Boolean = false
 
+    var aoeApiObjects = mutableListOf<AoEApiObject>()
+    private var viewAdapter: SimpleItemRecyclerViewAdapter ?= null
+
+    lateinit var aoeAPI: AoEAPI
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
+
+        aoeApiObjects = mutableListOf()
 
         setSupportActionBar(toolbar)
         toolbar.title = title
@@ -52,21 +63,27 @@ class ItemListActivity : AppCompatActivity() {
             twoPane = true
         }
 
-        setupRecyclerView(item_list)
+        aoeAPI = AoEAPI.Factory.create()
+
+        setupRecyclerView(item_list as RecyclerView)
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter =
+        viewAdapter = SimpleItemRecyclerViewAdapter(this, aoeApiObjects, twoPane)
+        recyclerView.adapter = viewAdapter
+
+        if(isNetworkConnected())
+        /*recyclerView.adapter =
             SimpleItemRecyclerViewAdapter(
                 this,
                 DummyContent.ITEMS,
                 twoPane
-            )
+            )*/
     }
 
     class SimpleItemRecyclerViewAdapter(
         private val parentActivity: ItemListActivity,
-        private val values: List<DummyContent.DummyItem>,
+        private val values: List<AoEApiObject>,
         private val twoPane: Boolean
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -118,5 +135,12 @@ class ItemListActivity : AppCompatActivity() {
             val idView: TextView = view.id_text
             val contentView: TextView = view.content
         }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo?.isConnected == true
     }
 }

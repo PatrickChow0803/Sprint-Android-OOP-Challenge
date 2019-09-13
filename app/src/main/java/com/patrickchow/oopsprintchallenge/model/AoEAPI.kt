@@ -8,21 +8,22 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 interface AoEAPI {
 
     @GET("/civilization/{id}")
-    fun getCivilization(id: Int): Call<Civilization>
+    fun getCivilization(@Path("id") id: Int): Call<Civilization>
 
     @GET("/unit/{id}")
-    fun getUnit(id: Int): Call<Unit>
+    fun getUnit(@Path("id") id: Int): Call<Unit>
 
     @GET("/structure/{id}")
-    fun getStructure(id: Int): Call<Structure>
+    fun getStructure(@Path("id") id: Int): Call<Structure>
 
     @GET("/technology/{id}")
-    fun getTechnology(id: Int): Call<Structure>
+    fun getTechnology(@Path("id") id: Int): Call<Technology>
 
     class Factory{
         companion object{
