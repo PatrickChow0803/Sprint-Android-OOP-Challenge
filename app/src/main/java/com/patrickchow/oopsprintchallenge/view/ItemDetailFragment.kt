@@ -1,5 +1,6 @@
 package com.patrickchow.oopsprintchallenge.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -68,7 +69,21 @@ class ItemDetailFragment : Fragment() {
     }
 
     interface DetailResponse {
-        fun provideInfoForObject(info: String)
+        fun showToast(aoeApiObject: AoEApiObject)
+    }
+
+    private var fragmentListener: DetailResponse? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is DetailResponse) {
+            fragmentListener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        fragmentListener = null
     }
 
     companion object {

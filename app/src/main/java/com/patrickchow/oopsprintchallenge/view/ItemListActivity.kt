@@ -34,8 +34,8 @@ import retrofit2.Response
  */
 class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
 
-    override fun provideInfoForObject(info: String) {
-        Toast.makeText(this, "We got this info from the detail:\n$info", Toast.LENGTH_SHORT).show()
+    override fun showToast(aoeApiObject: AoEApiObject) {
+        Toast.makeText(this, "Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
     }
 
     /**

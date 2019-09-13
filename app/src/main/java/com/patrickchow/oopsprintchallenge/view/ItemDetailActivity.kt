@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.patrickchow.oopsprintchallenge.R
+import com.patrickchow.oopsprintchallenge.model.AoEApiObject
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -16,9 +17,8 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  * in a [ItemListActivity].
  */
 class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse{
-
-    override fun provideInfoForObject(info: String) {
-        Toast.makeText(this, "Info obtained from the detail:\n$info", Toast.LENGTH_SHORT).show()
+    override fun showToast(aoeApiObject: AoEApiObject) {
+        Toast.makeText(this, "Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
