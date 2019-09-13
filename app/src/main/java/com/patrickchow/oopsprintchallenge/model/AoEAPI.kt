@@ -13,21 +13,21 @@ import java.util.concurrent.TimeUnit
 
 interface AoEAPI {
 
-    @GET("/civilization/{id}")
+    @GET("civilization/{id}")
     fun getCivilization(@Path("id") id: Int): Call<Civilization>
 
-    @GET("/unit/{id}")
+    @GET("unit/{id}")
     fun getUnit(@Path("id") id: Int): Call<Unit>
 
-    @GET("/structure/{id}")
+    @GET("structure/{id}")
     fun getStructure(@Path("id") id: Int): Call<Structure>
 
-    @GET("/technology/{id}")
+    @GET("technology/{id}")
     fun getTechnology(@Path("id") id: Int): Call<Technology>
 
     class Factory{
         companion object{
-            private const val BASE_URL = "https://age-of-empires-2-api.herokuapp.com/api/v1"
+            private const val BASE_URL = "https://age-of-empires-2-api.herokuapp.com/api/v1/"
 
             fun create():AoEAPI{
                 val logger = HttpLoggingInterceptor()

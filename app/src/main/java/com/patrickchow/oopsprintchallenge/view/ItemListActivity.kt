@@ -77,7 +77,7 @@ class ItemListActivity : AppCompatActivity() {
         recyclerView.adapter = viewAdapter
 
         if(isNetworkConnected()){
-            //getData()
+            getData()
         }
         else{
             Toast.makeText(this@ItemListActivity, "No Network", Toast.LENGTH_SHORT).show()
@@ -85,7 +85,34 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     //Method to retrive all the data
+    private fun getData(){
 
+        //Add civilizations
+        val civilizationIds = mutableListOf(1,2,3)
+        civilizationIds.forEach {
+            getCivilization(it)
+        }
+
+        //Add units
+        val unitIds = mutableListOf(1,2)
+        unitIds.forEach {
+            getUnit(it)
+        }
+
+        //Add structures
+        val structureIds = mutableListOf(1,2)
+        structureIds.forEach {
+            getStructure(it)
+        }
+
+        //Add technologies
+        val technologyIds = mutableListOf(1,2)
+        technologyIds.forEach {
+            getTechnology(it)
+        }
+    }
+
+    //Gets the civilization
     fun getCivilization(id: Int){
         aoeAPI.getCivilization(id).enqueue(object: Callback<Civilization>{
             override fun onFailure(call: Call<Civilization>, t: Throwable) {
@@ -106,6 +133,7 @@ class ItemListActivity : AppCompatActivity() {
         })
     }
 
+    //Gets the unit
     fun getUnit(id: Int){
         aoeAPI.getUnit(id).enqueue(object: Callback<Unit>{
             override fun onFailure(call: Call<Unit>, t: Throwable) {
@@ -126,6 +154,7 @@ class ItemListActivity : AppCompatActivity() {
         })
     }
 
+    //Gets the structure
     fun getStructure(id: Int){
         aoeAPI.getStructure(id).enqueue(object: Callback<Structure>{
             override fun onFailure(call: Call<Structure>, t: Throwable) {
@@ -146,6 +175,7 @@ class ItemListActivity : AppCompatActivity() {
         })
     }
 
+    //Gets the technology
     fun getTechnology(id: Int){
         aoeAPI.getTechnology(id).enqueue(object: Callback<Technology>{
             override fun onFailure(call: Call<Technology>, t: Throwable) {
@@ -172,6 +202,8 @@ class ItemListActivity : AppCompatActivity() {
         private val twoPane: Boolean
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
+
+        private var lastPosition = -1
 
         private val onClickListener: View.OnClickListener
 
@@ -204,12 +236,12 @@ class ItemListActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val item = values[position]
-            holder.idView.text = item.id
-            holder.contentView.text = item.content
+            val aoeApiObject = values[position]
+            holder.idView.text = "${aoeApiObject.id}"
+            holder.contentView.text = "${aoeApiObject.name}"
 
             with(holder.itemView) {
-                tag = item
+                tag = aoeApiObject
                 setOnClickListener(onClickListener)
             }
         }
