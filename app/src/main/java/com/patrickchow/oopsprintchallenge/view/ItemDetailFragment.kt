@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.patrickchow.oopsprintchallenge.R
 import com.patrickchow.oopsprintchallenge.dummy.DummyContent
+import com.patrickchow.oopsprintchallenge.model.AoEApiObject
 import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
@@ -21,7 +22,7 @@ class ItemDetailFragment : Fragment() {
     /**
      * The dummy content this fragment is presenting.
      */
-    private var item: DummyContent.DummyItem? = null
+    private var item: AoEApiObject ?= null //Item will be equal to the selected item in the recyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,14 @@ class ItemDetailFragment : Fragment() {
                 // Load the dummy content specified by the fragment
                 // arguments. In a real-world scenario, use a Loader
                 // to load content from a content provider.
-                item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-                activity?.toolbar_layout?.title = item?.content
+
+                //Using the Bundle, get the object that was passed in
+                item = it.getSerializable(ARG_ITEM_ID) as AoEApiObject
+
+                val title = it.getSerializable(ARG_ITEM_ID) as AoEApiObject
+                activity?.toolbar_layout?.let {
+                    it.title = item?.name ?: ""
+                }
             }
         }
     }
@@ -43,9 +50,13 @@ class ItemDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
+        //Display the information of the selected item
+        rootView.item_detail.text = "${item.toString()}"
+
         // Show the dummy content as text in a TextView.
         item?.let {
-            rootView.item_detail.text = it.details
+
+            //rootView.item_detail.text =
         }
 
         return rootView

@@ -37,15 +37,20 @@ Here's an outline of the steps with some hints:
     - In addition to the attributes provided in the data set, add a Boolean variable that tracks some state - choose something that interests you, perhaps `isFavorite` or `isInUse` - about the API objects. Every type of object should have this state (where is the best place to put it?). You can provide a default value of false.
     - Go to your layout files and add a TextView or other UI element to display the description you have created (`item_list_content.xml` and `item_detail.xml` are good places). Also add UI to display and change the state you have added. You might use a Button, an ImageView, a CheckBox, or something else of your choosing, just make sure you can both change the value of the object and display the value after it has changed.
 
+	
 5. Create your ViewModel/Presenter.
     - You don't have to use Data Binding for this part, just create a ViewModel/Presenter that will hold your data.
     - Convert the data you collected in 2 into a list of API objects held in the ViewModel/Presenter
-    - Replace all the DummyItem object references from the project template with the objects you have created. You'll have to create a instance of the ViewModel/Presenter in your ItemListActivity to do this.
+    - Replace all the DummyItem object references from the project template with the objects you have created.
+	You'll have to create a instance of the ViewModel/Presenter in your ItemListActivity to do this.
 
 6. In the ItemDetailFragment, you will create a way to let the attached Activity show a Toast message when the state has changed on the detail.
     - Inside your Fragment class, create an interface that has a single method. This method should pass back an API object.
-    - Make the two Activities implement your Fragment interface. In the interface function for each Activity, show a Toast that displays information about the item that was changed and the Activity that is showing the Toast.
-    - In your Fragment's onAttach method, store the Activity in a member variable so that you can call it when your UI element is activated (onClickListener or otherwise).
+    - Make the two Activities implement your Fragment interface. In the interface function for each Activity, show a Toast that
+	displays information about the item that was changed and the Activity that is showing the Toast.
+    - In your Fragment's onAttach method, store the Activity in a member variable so that you can call it when your UI element is 
+	activated (onClickListener or otherwise).
+	
     - In your Fragment's onDetach method, release the Activity by setting the member variable to null.
 
 ## Rubric

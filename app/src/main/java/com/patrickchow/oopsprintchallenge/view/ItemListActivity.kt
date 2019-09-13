@@ -211,6 +211,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
 
         private val onClickListener: View.OnClickListener
 
+        //If an item is clicked on, open up a new fragment and pass in the selected object
         init {
             onClickListener = View.OnClickListener { v ->
                 val item = v.tag as AoEApiObject

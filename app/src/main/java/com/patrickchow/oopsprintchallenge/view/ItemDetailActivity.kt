@@ -15,7 +15,11 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  * item details are presented side-by-side with a list of items
  * in a [ItemListActivity].
  */
-class ItemDetailActivity : AppCompatActivity(){
+class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse{
+
+    override fun provideInfoForObject(info: String) {
+        Toast.makeText(this, "Info obtained from the detail:\n$info", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +48,9 @@ class ItemDetailActivity : AppCompatActivity(){
             // using a fragment transaction.
             val fragment = ItemDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(
+                    putSerializable(
                         ItemDetailFragment.ARG_ITEM_ID,
-                        intent.getStringExtra(ItemDetailFragment.ARG_ITEM_ID)
+                        intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM_ID)
                     )
                 }
             }
