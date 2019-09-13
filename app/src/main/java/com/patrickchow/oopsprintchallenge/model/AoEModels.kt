@@ -1,37 +1,94 @@
 package com.patrickchow.oopsprintchallenge.model
 
-//This class holds attributes that all the child classes hold. (Exception being age for civilization)
-abstract class AoEModels(
-    val id: Int? = null,
-    val name: String? = null,
-    val expansion: String? =null,
-    val age: String? = null, //Civilization doesn't have an age attribute but all the other classes do.
-    var favorite: Boolean = false //Personal data for the assignment. Not actually part of API
-)
+/*
+Civilization -
+    id: Int
+    name: String
+    expansion: String,
+    army_type: String,
+    unique_unit: String
+    unique_tech: String
+ */
+data class Civilizations(
+    val army_type: String,
+    val unique_unit: String,
+    val unique_tech: String
+):AoEApiObject(){
+    override fun info(): String = "Army Type: $army_type,\n" +
+                                  "Unique Unit: $unique_unit,\n" +
+                                  "Unique Tech: $unique_tech"
 
-class Civilizations(
+    override fun toString(): String {
+        return "$id, $name, $expansion, $army_type, $unique_unit, $unique_tech"
+    }
+}
+
+/*
+Unit -
     id: Int,
-    name: String,
-    expansion: String
-):AoEModels(id, name, expansion)
+    name: Int,
+    expansion: String,
+    age: String,
+    created_in: String,
+    build_time: Int
+ */
 
-class Unit(
+data class Unit(
+    val age: String,
+    val created_in: String,
+    val build_time: Int
+):AoEApiObject(){
+    override fun info(): String = "Age: $age,\n" +
+                                  "Created In: $created_in,\n" +
+                                  "Build Time: $build_time"
+
+    override fun toString(): String {
+        return "$id, $name, $expansion, $age, $created_in, $build_time"
+    }
+}
+/*
+Structure -
     id: Int,
     name: String,
     expansion: String,
-    age: String
-):AoEModels(id, name, age, expansion)
+    age: String,
+    build_time: Int
+    hit_points: Int
+ */
+data class Structure(
+    val age: String,
+    val build_time: Int,
+    val hit_points: Int
+):AoEApiObject(){
+    override fun info(): String = "Age: $age,\n" +
+                                  "Build Time: $build_time,\n" +
+                                  "Hit Points: $hit_points"
 
-class Structure(
-    id: Int,
+    override fun toString(): String {
+        return "$id, $name, $expansion, $age, $build_time, $hit_points"
+    }
+}
+
+/*
+Technology
+    id: Int
     name: String,
     expansion: String,
-    age: String
-):AoEModels(id, name, age, expansion)
+    age: String,
+    develops_in: String,
+    build_time: Int
+ */
 
-class Technology(
-    id: Int,
-    name: String,
-    expansion: String,
-    age: String
-):AoEModels(id, name, age, expansion)
+data class Technology(
+    val age: String,
+    val develops_in: String,
+    val build_time: Int
+):AoEApiObject(){
+    override fun info(): String = "Age: $age,\n" +
+                                  "Develops In: $develops_in,\n" +
+                                  "Build Time: $build_time"
+
+    override fun toString(): String {
+        return "$id, $name, $expansion, $age, $develops_in, $build_time"
+    }
+}
