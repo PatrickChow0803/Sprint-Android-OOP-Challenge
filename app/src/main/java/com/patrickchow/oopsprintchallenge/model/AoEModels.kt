@@ -1,25 +1,26 @@
 package com.patrickchow.oopsprintchallenge.model
 
+import com.google.gson.annotations.SerializedName
+
 /*
 Civilization -
     id: Int
     name: String
     expansion: String,
     army_type: String,
+    //For some reason unique_unit and unique tech doesn't work
     unique_unit: String
     unique_tech: String
+    team_bonus: String
  */
 data class Civilization(
-    val army_type: String,
-    val unique_unit: String,
-    val unique_tech: String
+    @SerializedName("army_type") val armyType: String,
+    @SerializedName("team_bonus") val teamBonus: String
 ):AoEApiObject(){
-    override fun info(): String = "Army Type: $army_type,\n" +
-                                  "Unique Unit: $unique_unit,\n" +
-                                  "Unique Tech: $unique_tech"
+    override fun info(): String = "Army Type: $armyType"
 
     override fun toString(): String {
-        return "$id, $name, $expansion, $army_type, $unique_unit, $unique_tech"
+        return "Civilization: $name,\n Army Type: $armyType,\n Team Bonus: $teamBonus"
     }
 }
 

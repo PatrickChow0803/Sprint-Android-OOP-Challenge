@@ -88,7 +88,7 @@ class ItemListActivity : AppCompatActivity() {
     private fun getData(){
 
         //Add civilizations
-        val civilizationIds = mutableListOf(1,2,3)
+        val civilizationIds = mutableListOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)
         civilizationIds.forEach {
             getCivilization(it)
         }
@@ -116,7 +116,7 @@ class ItemListActivity : AppCompatActivity() {
     fun getCivilization(id: Int){
         aoeAPI.getCivilization(id).enqueue(object: Callback<Civilization>{
             override fun onFailure(call: Call<Civilization>, t: Throwable) {
-                Toast.makeText(this@ItemListActivity, "Failure on Enqueue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ItemListActivity, "Failure on Enqueue: Civilization", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Civilization>, response: Response<Civilization>) {
@@ -137,7 +137,7 @@ class ItemListActivity : AppCompatActivity() {
     fun getUnit(id: Int){
         aoeAPI.getUnit(id).enqueue(object: Callback<Unit>{
             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                Toast.makeText(this@ItemListActivity, "Failure on Enqueue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ItemListActivity, "Failure on Enqueue: Unit", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
@@ -158,7 +158,7 @@ class ItemListActivity : AppCompatActivity() {
     fun getStructure(id: Int){
         aoeAPI.getStructure(id).enqueue(object: Callback<Structure>{
             override fun onFailure(call: Call<Structure>, t: Throwable) {
-                Toast.makeText(this@ItemListActivity, "Failure on Enqueue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ItemListActivity, "Failure on Enqueue: Structure", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Structure>, response: Response<Structure>) {
@@ -179,7 +179,7 @@ class ItemListActivity : AppCompatActivity() {
     fun getTechnology(id: Int){
         aoeAPI.getTechnology(id).enqueue(object: Callback<Technology>{
             override fun onFailure(call: Call<Technology>, t: Throwable) {
-                Toast.makeText(this@ItemListActivity, "Failure on Enqueue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ItemListActivity, "Failure on Enqueue: Technology", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Technology>, response: Response<Technology>) {
@@ -237,8 +237,8 @@ class ItemListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val aoeApiObject = values[position]
-            holder.idView.text = "${aoeApiObject.id}"
-            holder.contentView.text = "${aoeApiObject.name}"
+            holder.idView.text = "${aoeApiObject.name}"
+            holder.contentView.text = "${aoeApiObject.toString()}"
 
             with(holder.itemView) {
                 tag = aoeApiObject
