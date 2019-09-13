@@ -56,7 +56,14 @@ class ItemDetailFragment : Fragment() {
         rootView.item_detail.text = "${item.toString()}"
 
         rootView.btn_info.setOnClickListener {
-            Toast.makeText(activity, item.toString(), Toast.LENGTH_SHORT).show()
+            var message: String = ""
+            if(item!!.favorite){
+                message = "This is favorited"
+            }
+            else{
+                message = "This isn't favorited"
+            }
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
         }
 
         // Show the dummy content as text in a TextView.
@@ -67,6 +74,8 @@ class ItemDetailFragment : Fragment() {
 
         return rootView
     }
+
+
 
     interface DetailResponse {
         fun showToast(aoeApiObject: AoEApiObject)

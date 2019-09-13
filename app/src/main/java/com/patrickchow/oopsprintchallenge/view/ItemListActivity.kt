@@ -14,9 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.patrickchow.oopsprintchallenge.R
 
-import com.patrickchow.oopsprintchallenge.dummy.DummyContent
 import com.patrickchow.oopsprintchallenge.model.*
 import com.patrickchow.oopsprintchallenge.model.Unit
+import com.patrickchow.oopsprintchallenge.viewmodel.AoEAPI
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*

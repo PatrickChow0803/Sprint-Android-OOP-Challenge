@@ -1,7 +1,10 @@
-package com.patrickchow.oopsprintchallenge.model
+package com.patrickchow.oopsprintchallenge.viewmodel
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.patrickchow.oopsprintchallenge.model.Civilization
+import com.patrickchow.oopsprintchallenge.model.Structure
+import com.patrickchow.oopsprintchallenge.model.Technology
+import com.patrickchow.oopsprintchallenge.model.Unit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -29,7 +32,7 @@ interface AoEAPI {
         companion object{
             private const val BASE_URL = "https://age-of-empires-2-api.herokuapp.com/api/v1/"
 
-            fun create():AoEAPI{
+            fun create(): AoEAPI {
                 val logger = HttpLoggingInterceptor()
                 logger.level = HttpLoggingInterceptor.Level.BASIC
 
