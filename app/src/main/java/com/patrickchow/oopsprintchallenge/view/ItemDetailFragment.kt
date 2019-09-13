@@ -51,6 +51,10 @@ class ItemDetailFragment : Fragment() {
         return rootView
     }
 
+    interface DetailResponse {
+        fun provideInfoForObject(info: String)
+    }
+
     companion object {
         /**
          * The fragment argument representing the item ID that this fragment
