@@ -1,10 +1,11 @@
-package com.patrickchow.oopsprintchallenge
+package com.patrickchow.oopsprintchallenge.view
 
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.patrickchow.oopsprintchallenge.R
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**

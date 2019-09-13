@@ -1,10 +1,11 @@
-package com.patrickchow.oopsprintchallenge
+package com.patrickchow.oopsprintchallenge.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.patrickchow.oopsprintchallenge.R
 import com.patrickchow.oopsprintchallenge.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
