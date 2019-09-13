@@ -20,7 +20,7 @@ data class Civilization(
     override fun info(): String = "Army Type: $armyType"
 
     override fun toString(): String {
-        return "Civilization: $name,\n Army Type: $armyType,\n Team Bonus: $teamBonus"
+        return "Civilization: $name\nArmy Type: $armyType\nTeam Bonus: $teamBonus"
     }
 }
 

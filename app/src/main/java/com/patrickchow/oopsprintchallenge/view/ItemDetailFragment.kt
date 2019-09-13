@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.patrickchow.oopsprintchallenge.R
 import com.patrickchow.oopsprintchallenge.dummy.DummyContent
 import com.patrickchow.oopsprintchallenge.model.AoEApiObject
@@ -52,6 +53,10 @@ class ItemDetailFragment : Fragment() {
 
         //Display the information of the selected item
         rootView.item_detail.text = "${item.toString()}"
+
+        rootView.btn_info.setOnClickListener {
+            Toast.makeText(activity, item.toString(), Toast.LENGTH_SHORT).show()
+        }
 
         // Show the dummy content as text in a TextView.
         item?.let {
