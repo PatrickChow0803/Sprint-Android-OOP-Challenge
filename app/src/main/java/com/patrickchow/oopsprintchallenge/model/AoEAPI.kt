@@ -40,6 +40,7 @@ interface AoEAPI {
                     .connectTimeout(15, TimeUnit.SECONDS)
                     .build()
 
+                //This gson might not be necessary
                 val gson = GsonBuilder()
                     .setLenient()
                     .create()
