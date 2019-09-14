@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  */
 class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse{
     override fun showToast(aoeApiObject: AoEApiObject) {
-        Toast.makeText(this, "Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "This item is favorited: ${aoeApiObject.favorite}\n Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

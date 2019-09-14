@@ -35,7 +35,7 @@ import retrofit2.Response
 class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
 
     override fun showToast(aoeApiObject: AoEApiObject) {
-        Toast.makeText(this, "Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "This item is favorited: ${aoeApiObject.favorite}\n Info obtained from the detail:\n$aoeApiObject", Toast.LENGTH_SHORT).show()
     }
 
     /**

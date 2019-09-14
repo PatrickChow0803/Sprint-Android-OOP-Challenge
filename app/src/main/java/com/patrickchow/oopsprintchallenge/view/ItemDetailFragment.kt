@@ -10,7 +10,9 @@ import android.widget.Toast
 import com.patrickchow.oopsprintchallenge.R
 import com.patrickchow.oopsprintchallenge.dummy.DummyContent
 import com.patrickchow.oopsprintchallenge.model.AoEApiObject
+import com.patrickchow.oopsprintchallenge.viewmodel.AoEAPI
 import kotlinx.android.synthetic.main.activity_item_detail.*
+import kotlinx.android.synthetic.main.item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
 /**
@@ -56,14 +58,7 @@ class ItemDetailFragment : Fragment() {
         rootView.item_detail.text = "${item.toString()}"
 
         rootView.btn_info.setOnClickListener {
-            var message: String = ""
-            if(item!!.favorite){
-                message = "This is favorited"
-            }
-            else{
-                message = "This isn't favorited"
-            }
-            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            AoEAPI.Factory.clickListener(btn_info, item, fragmentListener)
         }
 
         // Show the dummy content as text in a TextView.

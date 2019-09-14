@@ -1,10 +1,10 @@
 package com.patrickchow.oopsprintchallenge.viewmodel
 
+import android.widget.Button
 import com.google.gson.GsonBuilder
-import com.patrickchow.oopsprintchallenge.model.Civilization
-import com.patrickchow.oopsprintchallenge.model.Structure
-import com.patrickchow.oopsprintchallenge.model.Technology
+import com.patrickchow.oopsprintchallenge.model.*
 import com.patrickchow.oopsprintchallenge.model.Unit
+import com.patrickchow.oopsprintchallenge.view.ItemDetailFragment
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -56,6 +56,17 @@ interface AoEAPI {
 
                 return retrofit.create(AoEAPI::class.java)
             }
+            fun clickListener(view: Button, item: AoEApiObject?, fragmentListener: ItemDetailFragment.DetailResponse?) {
+                item?.let {
+
+                    item.favorite = !item.favorite
+
+                    view.text = item?.favorite.toString()
+                    fragmentListener?.showToast(it)
+                }
+            }
         }
     }
+
+
 }
